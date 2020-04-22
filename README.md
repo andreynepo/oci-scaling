@@ -1,8 +1,32 @@
+### Before you begin
+
+You will need basic understanding of Linux command line, ssh and cloud services concept.
+
+In order to run this workshop, you will need an access to Oracle Cloud Infrastructure. If you don't have an account, [please subscribe to a free trial](ft.md).
+
 ### 1. Preparation
 
-#### 1.1. Connecting to Oracle Cloud Infrastructure
+#### 1.1. Connect to Oracle Cloud Infrastructure
 
-#### 1.2. Creating VCN
+You can use any modern browser. We recommend to turn off all extensions that may affect browsing (such as ad blockers).
+
+Open https://oracle.com, press **View Accounts**, and then **Sign in to Cloud** 
+
+Enter your account name (which you have specified during account creation) and press **Next**.
+
+Account name is also shown in the email with initial password which you have received upon account creation.
+
+Enter your username (usually email) and password.
+
+Oracle Cloud Dashboard will be open.
+
+Here you can check your account balance, summary of your services and other useful information.
+
+Press **Infrastructure** button to enter Infrastructure section. You might need to enter cloud account name once again and press **Next**.
+
+Also you can use direct link to infrastructure console (for **Frankfurt** region): https://console.eu-frankfurt-1.oraclecloud.com/a/compute/instances
+
+#### 1.2. Create VCN
 
 Go to **Networking / Virtual Cloud Network**
 
@@ -18,7 +42,7 @@ Press **Next** and then press **Create**.
 
 VCN with all necessary resources, including Public and Private subnets, will be created.
 
-#### 1.3. Generating ssh keys
+#### 1.3. Generate ssh keys
 [How to create ssh keys](ssh.md) with `putty`
 
 We can use Cloud Shell instead of `putty`.
@@ -30,7 +54,7 @@ Run command: `ssh-keygen`
 View and copy ssh public key: `cat $HOME/.ssh/id_rsa.pub`
 
 
-### 2. Creating VM for Wordpress
+### 2. Create VM for Wordpress
 
 Link: How to create a VM
 
@@ -56,7 +80,7 @@ You will see a command prompt from your VM:
 
 Enter command to update packages: `sudo yum update -y`
 
-#### 2.1. Creating File Storage Service
+#### 2.1. Create File Storage Service
 
 Go to **File Storage**.
 
@@ -109,7 +133,7 @@ Enter **Destination Port Range**:  `111,2048`
 
 Press **Add Ingress Rules**.
 
-#### 2.3. Connecting FSS to VM
+#### 2.3. Connect FSS to VM
 
 Run following command on your Wordpress VM:
 
@@ -127,7 +151,7 @@ Exit nano saving your changes (press **Ctrl-X**, then **Y** and **Enter**)
 
 `sudo mount -a`
 
-### 2. Creating VM for MySQL
+### 2. Create VM for MySQL
 
 #### 2.1. Generate ssh key for MySQL VM 
 
@@ -151,7 +175,7 @@ You will see command prompt from MySQL VM:
 
 `[opc@ws-mysql ~]$ sudo yum update -y`
 
-#### 2.1. Creating Block Storage for Database
+#### 2.1. Create Block Storage for Database
 
 Go to **Block Storage / Block Volume**.
 
@@ -167,7 +191,7 @@ You may leave other parameters unchanged.
 
 Press **Create Block Volume**.
 
-#### 2.2. Connecting Block Storage to VM
+#### 2.2. Connect Block Storage to VM
 
 Once Block Volume is created, choose **Attached Instances** in Block Volume Details.
 
@@ -194,7 +218,7 @@ Add to fstab:
 
 `sudo mount -a`
 
-### 3. Installing  MySQL database
+### 3. Install  MySQL database
 
 `sudo yum install docker-engine -y`
 
@@ -214,7 +238,7 @@ Choose your VCN and then Private subnet.
 Choose Security List for Private Subnet
 Press **Add Ingress Rules**, enter 10.0.0.0/16, TCP, 3306 and press **Add Ingress Rules**.
 
-### 4. Installing Wordpress
+### 4. Install Wordpress
 
 Return to your Wordpress VM and run following commands:
 
@@ -312,8 +336,6 @@ Repeat benchmark
 
 #### 6.5. Resize MySQL Block Volume
 
-##### 6.5.1. Stop Wordpress container
-
 Connect to MySQL VM
 
 Stop MySQL container
@@ -338,9 +360,9 @@ Run MySQL container
 
 `docker start mysql`
 
-##### Run MySQL Benchmark
-
 Return to Wordpress VM.
+
+Run MySQL Benchmark:
 
 `sysbench /usr/share/sysbench/oltp_read_write.lua --mysql-host=$DB_HOST  --mysql-port=3306 --mysql-user=wordpress --mysql-password='myWSPassworD_01' --mysql-db=test --db-driver=mysql --tables=3 --table-size=1000000 --report-interval=5 --threads=32 --time=30 run`
 
@@ -439,5 +461,4 @@ Run benchmark:
 
 `sysbench cpu --report-interval=5 --threads=32 --time=600 run &`
 
-
-
+Look how your instance pool is scaled. It will create and delete instances, but cooldown period is 5 minutes,
