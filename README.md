@@ -462,3 +462,33 @@ Run benchmark:
 `sysbench cpu --report-interval=5 --threads=32 --time=600 run &`
 
 Look how your instance pool is scaled. It will create and delete instances, but cooldown period is 5 minutes,
+
+### 8. Clean up
+
+#### 8.1. Clean up benchmarking data
+
+On Wordpress VM:
+
+`cd /mnt/wordpress/test`
+
+`sudo rm *`
+
+`docker run -it --rm mariadb mysql -h $DB_HOST -uroot -pmyWSPassworD_01`
+
+`drop table test`
+
+`exit`
+
+#### 8.2. Stop instance pool
+
+Pool instances will be deleted.
+
+#### 8.3. Stop Wordpress VM
+
+#### 8.4. Stop MySQL VM
+
+If you needn't resources anymore, you can delete it instead of stopping.
+
+In addition, you can delete MySQL Block Volume, Wordpress FSS and Load Balancer.
+
+**Note that deleted resources can't be restored**.
