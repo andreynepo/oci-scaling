@@ -4,6 +4,8 @@ You will need basic understanding of Linux command line, ssh and cloud services 
 
 In order to run this workshop, you will need an access to Oracle Cloud Infrastructure. If you don't have an account, [please subscribe to a free trial](ft.md).
 
+Please check out [free **training** and **certification** opportunities](https://www.oracle.com/corporate/blog/free-certifications-oracle-oci-autonomous-033020.html) available from Oracle till **May 15, 2020**.
+
 ### 1. Preparation
 
 #### 1.1. Connect to Oracle Cloud Infrastructure
