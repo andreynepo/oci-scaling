@@ -328,6 +328,7 @@ Repeat benchmark.
 #### Clean up test files:
 
 `cd /mnt/wordpress/test`
+
 `sudo rm *`
 
 #### 5.3. Change shape back to 1 OCPU
@@ -439,21 +440,33 @@ Press **Create Instance Pool**.
 
 Go to **Networking / Virtual Cloud Network** and choose your VCN.
 
-Select **Private Subnet** and add **10.0.0.0/16** and port TCP/**80** to Security List Ingress Rules.
+Select **Private Subnet** and add **10.0.0.0/16** and port TCP/**80** to Security List Ingress Rules. This will open http port for Load Balancer to access VMs in Instance Pool.
 
-Check status code for Health Check!
+Go back to your VCN and select **Public Subnet** and add **0.0.0.0/0** and port TCP/**80** to Security List Ingress Rules. This will open http port for whole Internet.
 
-Update health check
+Check status code for Health Check from Wordpress VM:
 
-Go to web page with Public IP address of Load Balancer.
+`curl -I <Private IP of VM in pool>`
 
-Install Wordpress
+You will see http status code (usually 302).
 
-Check status code for Health Check!
+Update health check of Load Balancer with your http status code.
 
-Update health check
+Open web page with Public IP address of Load Balancer.
 
-Usually Wordpress status code migrated like this: 302->200->301.
+Install Wordpress, entering site title, admin username, password and email.
+
+Usually Wordpress changes http status code after installation.
+
+Check status code for Health Check from Wordpress VM:
+
+`curl -I <Private IP of VM in pool>`
+
+You will see new http status code (usually to 200).
+
+Update health check of Load Balancer with new http status code.
+
+Sometimes Wordpress status code migrated like this: 302->200->301. Check http status code and change it in Health Check if it is changed.
 
 #### 7.3. Create Autoscaling Configuration
 
@@ -479,11 +492,15 @@ Press **Create**.
 
 Connect to VM in pool from Wordpress VM.
 
-Run benchmark:
+`ssh opc@<Private IP of VM in pool>`
+
+Run benchmark to load CPU for 10 minutes:
 
 `sysbench cpu --report-interval=5 --threads=32 --time=600 run &`
 
-Look how your instance pool is scaled. It will create and delete instances, but cooldown period is 5 minutes,
+You may exit ssh connection after running this command. Benchmark will continue in background.
+
+Look how your instance pool is scaled. It will create and delete instances, but only after cooldown period which is 5 minutes,
 
 ### 8. Clean up
 
@@ -497,7 +514,7 @@ On Wordpress VM:
 
 `docker run -it --rm mariadb mysql -h $DB_HOST -uroot -pmyWSPassworD_01`
 
-`drop table test`
+`drop database test`
 
 `exit`
 
