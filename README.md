@@ -1,3 +1,13 @@
+## Welcome to Oracle Cloud Infrastructure Scaling workshop!
+
+### Thanks for joining!
+
+You may ask questions on lab as well as Oracle Cloud Services to **Andrey Nepomnyaschiy**, Senior Solution Engineer at Oracle Digital.
+
+<img src="media/qr.png" width="200" />
+
+
+
 ### Before you begin
 
 Useful links:
