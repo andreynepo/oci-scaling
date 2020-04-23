@@ -10,6 +10,10 @@ You may ask questions on lab as well as Oracle Cloud Services to **Andrey Nepomn
 
 ### Before you begin
 
+#### Please check [Microservices and Kubernetes workshop](https://github.com/andreynepo/clouddemo-micro).
+
+#### Please check [free **training** and **certification** opportunities](https://www.oracle.com/corporate/blog/free-certifications-oracle-oci-autonomous-033020.html) available from Oracle till **May 15, 2020**.
+
 Useful links:
 
 - [About Oracle Cloud Infrastructure](https://www.oracle.com/cloud/)
@@ -20,7 +24,7 @@ You will need basic understanding of Linux command line, ssh and cloud services 
 
 In order to run this workshop, you will need an access to Oracle Cloud Infrastructure. If you don't have an account, [please subscribe to a free trial](ft.md).
 
-Please check out [free **training** and **certification** opportunities](https://www.oracle.com/corporate/blog/free-certifications-oracle-oci-autonomous-033020.html) available from Oracle till **May 15, 2020**.
+
 
 ### 1. Preparation
 
