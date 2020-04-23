@@ -129,6 +129,8 @@ We need to open ports for NFS:
 - **Ingress** for **TCP** ports 111, 2048, 2049, and 2050, and **UDP** ports 111 and 2048.
 - **Egress** for **TCP** source ports 111, 2048, 2049, and 2050, and **UDP** source port 111.
 
+Usually Egress is already open for all protocols and all ports, so you may not need to add Egress rules.
+
 Go to **Networking / Virtual Cloud Networks**.
 
 Choose your VCN and then your Private Subnet.
