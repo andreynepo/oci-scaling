@@ -1,5 +1,11 @@
 ### Before you begin
 
+Useful links:
+
+- [About Oracle Cloud Infrastructure](https://www.oracle.com/cloud/)
+- [Oracle Cloud Free Trial](https://www.oracle.com/cloud/free/)
+- [Always Free Services](https://www.oracle.com/cloud/free/?source=:ow:o:p:nav:0916BCButton&intcmp=:ow:o:p:nav:0916BCButton#always-free)
+
 You will need basic understanding of Linux command line, ssh and cloud services concept.
 
 In order to run this workshop, you will need an access to Oracle Cloud Infrastructure. If you don't have an account, [please subscribe to a free trial](ft.md).
