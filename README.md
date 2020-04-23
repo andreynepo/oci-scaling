@@ -370,6 +370,10 @@ Change shape of MySQL VM back to 1 OCPU.
 
 ### 7. Wordpress horizontal autoscaling
 
+Concept of Instance Pool:
+
+![](media/ip.png)
+
 
 #### 7.1. Prepare for autoscaling
 
