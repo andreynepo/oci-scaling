@@ -281,7 +281,7 @@ Connect to MySQL database from Wordpress VM using Docker container:
 Run following commands in MariaDB command prompt:
 
 ```mysql
-create user wordpress identified by ‘myWSPassworD_01’;
+create user wordpress identified by 'myWSPassworD_01';
 
 create database wordpress;
 create database test;
